@@ -232,7 +232,7 @@ class STFTLoss(torch.nn.Module):
         return x_mag, x_phs
 
     def forward(self, input: torch.Tensor, target: torch.Tensor):
-        bs, chs, seq_len = input.size()
+        bs,  seq_len = input.size()
 
         if self.perceptual_weighting:  # apply optional A-weighting via FIR filter
             # since FIRFilter only support mono audio we will move channels to batch dim
@@ -615,7 +615,7 @@ class SumAndDifferenceSTFTLoss(torch.nn.Module):
                 Aggregate and intermediate loss terms. Only returned if output='full'.
         """
         assert input.shape == target.shape  # must have same shape
-        bs, chs, seq_len = input.size()
+        bs, seq_len = input.size()
 
         # compute sum and difference signals for both
         input_sum, input_diff = self.sd(input)
