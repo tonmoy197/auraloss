@@ -232,7 +232,7 @@ class STFTLoss(torch.nn.Module):
         return x_mag, x_phs
 
     def forward(self, input: torch.Tensor, target: torch.Tensor):
-        bs,  seq_len = input.size()
+        bs,  cls = input.size()
 
         if self.perceptual_weighting:  # apply optional A-weighting via FIR filter
             # since FIRFilter only support mono audio we will move channels to batch dim
