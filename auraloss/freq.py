@@ -615,7 +615,7 @@ class SumAndDifferenceSTFTLoss(torch.nn.Module):
                 Aggregate and intermediate loss terms. Only returned if output='full'.
         """
         assert input.shape == target.shape  # must have same shape
-        bs, seq_len = input.size()
+        bs, chs = input.size()
 
         # compute sum and difference signals for both
         input_sum, input_diff = self.sd(input)
